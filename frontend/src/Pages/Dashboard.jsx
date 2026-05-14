@@ -3,7 +3,7 @@ import React from "react";
 import rooms from "../data/rooms";
 
 // Import reusable component
-import RoomStatusCard from "../components/RoomStatusCard";
+import RoomStatuscard from "../components/RoomStatuscard.jsx";
 
 function Dashboard() {
 
@@ -34,22 +34,22 @@ function Dashboard() {
 
         {/* Reusable cards */}
 
-        <RoomStatusCard
+        <RoomStatuscard
           title="Total Rooms"
           value={totalRooms}
         />
 
-        <RoomStatusCard
+        <RoomStatuscard
           title="Available Rooms"
           value={availableRooms}
         />
 
-        <RoomStatusCard
+        <RoomStatuscard
           title="Occupied Rooms"
           value={occupiedRooms}
         />
 
-        <RoomStatusCard
+        <RoomStatuscard
           title="Needs Cleaning"
           value={dirtyRooms}
         />
