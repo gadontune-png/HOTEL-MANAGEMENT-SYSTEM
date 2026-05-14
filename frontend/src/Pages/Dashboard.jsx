@@ -2,37 +2,48 @@ import React from "react";
 
 import rooms from "../data/rooms";
 
-// Import reusable component
 import RoomStatuscard from "../components/RoomStatuscard.jsx";
 
 function Dashboard() {
 
-  // Total rooms
   const totalRooms = rooms.length;
 
-  // Available rooms
   const availableRooms = rooms.filter(
     (room) => room.status === "Clean"
   ).length;
 
-  // Occupied rooms
   const occupiedRooms = rooms.filter(
     (room) => room.status === "Occupied"
   ).length;
 
-  // Dirty rooms
   const dirtyRooms = rooms.filter(
     (room) => room.status === "Dirty"
   ).length;
 
   return (
-    <div className="dashboard">
 
-      <h1>Admin Dashboard</h1>
+    <div className="min-h-screen bg-[#EFE3D3] p-8">
 
-      <div className="dashboard-cards">
+      <h1
+        className="
+        text-5xl
+        font-bold
+        text-[#5C2E2E]
+        mb-10
+        "
+      >
+        Admin Dashboard
+      </h1>
 
-        {/* Reusable cards */}
+      <div
+        className="
+        grid
+        grid-cols-1
+        md:grid-cols-2
+        lg:grid-cols-4
+        gap-6
+        "
+      >
 
         <RoomStatuscard
           title="Total Rooms"
@@ -55,6 +66,7 @@ function Dashboard() {
         />
 
       </div>
+
     </div>
   );
 }
