@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+
 import StaffTable from "../components/StaffTable";
+
 function StaffManagement() {
 
-  // Staff state
   const [staff, setStaff] = useState([
-
     {
       id: 1,
       name: "John",
@@ -18,35 +18,29 @@ function StaffManagement() {
     },
   ]);
 
-  // Form input states
   const [name, setName] = useState("");
+
   const [role, setRole] = useState("");
 
-  // CREATE operation
   const addStaff = () => {
 
-    // Prevent empty input
     if (!name || !role) return;
 
-    // Create new staff object
     const newStaff = {
       id: Date.now(),
       name,
       role,
     };
 
-    // Add new staff to array
     setStaff([...staff, newStaff]);
 
-    // Clear form inputs
     setName("");
+
     setRole("");
   };
 
-  // DELETE operation
   const deleteStaff = (id) => {
 
-    // Remove selected staff member
     setStaff(
       staff.filter(
         (member) => member.id !== id
@@ -55,50 +49,100 @@ function StaffManagement() {
   };
 
   return (
-    <div>
 
-      {/* Page heading */}
-      <h1>Staff Management</h1>
+    <div className="min-h-screen bg-[#EFE3D3] p-8">
 
-      {/* Input section */}
-      <div>
+      <h1
+        className="
+        text-5xl
+        font-bold
+        text-[#5C2E2E]
+        mb-10
+        "
+      >
+        Staff Management
+      </h1>
 
-        {/* Staff name input */}
+      <div
+        className="
+        bg-[#FDF6EC]
+        p-6
+        rounded-2xl
+        shadow-lg
+        flex
+        flex-col
+        md:flex-row
+        gap-4
+        border
+        border-[#C4A484]
+        "
+      >
+
         <input
+          className="
+          border
+          border-[#C4A484]
+          rounded-lg
+          px-4
+          py-3
+          flex-1
+          bg-[#FFF8F0]
+          text-[#5C4033]
+          focus:outline-none
+          focus:ring-2
+          focus:ring-[#7B3F00]
+          "
           type="text"
           placeholder="Staff Name"
-
           value={name}
-
           onChange={(e) =>
             setName(e.target.value)
           }
         />
 
-        {/* Staff role input */}
         <input
+          className="
+          border
+          border-[#C4A484]
+          rounded-lg
+          px-4
+          py-3
+          flex-1
+          bg-[#FFF8F0]
+          text-[#5C4033]
+          focus:outline-none
+          focus:ring-2
+          focus:ring-[#7B3F00]
+          "
           type="text"
           placeholder="Role"
-
           value={role}
-
           onChange={(e) =>
             setRole(e.target.value)
           }
         />
 
-        {/* Add button */}
-        <button onClick={addStaff}>
+        <button
+          className="
+          bg-[#7B3F00]
+          text-white
+          px-6
+          py-3
+          rounded-lg
+          hover:bg-[#5E2D00]
+          transition
+          "
+          onClick={addStaff}
+        >
           Add Staff
         </button>
 
       </div>
 
-      {/* Staff table */}
       <StaffTable
         staff={staff}
         deleteStaff={deleteStaff}
-      />  
+      />
 
     </div>
   );

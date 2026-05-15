@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 
-// Import room data
-import roomsData from "../data/rooms";
-
-// Import log component
 import HouseKeepingLog from "../components/HouseKeepingLog";
 
-function Housekeeping() {
+function Housekeeping({
+  rooms,
+  setRooms,
+}) {
 
-  // Store room data in state
-  const [rooms, setRooms] = useState(roomsData);
-
-  // Store housekeeping logs
   const [logs, setLogs] = useState([]);
 
-  // Function to update room status
+  // Update room status
   const updateStatus = (id, newStatus) => {
 
-    // Update room status
     const updatedRooms = rooms.map((room) =>
 
       room.id === id
@@ -25,15 +19,12 @@ function Housekeeping() {
         : room
     );
 
-    // Save updated rooms
     setRooms(updatedRooms);
 
-    // Find updated room
     const updatedRoom = rooms.find(
       (room) => room.id === id
     );
 
-    // Add new activity log
     setLogs([
       ...logs,
       `Room ${updatedRoom.number} marked as ${newStatus}`,
@@ -41,63 +32,143 @@ function Housekeeping() {
   };
 
   return (
-    <div>
 
-      {/* Page heading */}
-      <h1>Housekeeping Management</h1>
+    <div className="min-h-screen bg-[#EFE3D3] p-8">
 
-      {/* Rooms table */}
-      <table border="1" cellPadding="10">
+      <h1
+        className="
+        text-5xl
+        font-bold
+        text-[#5C2E2E]
+        mb-10
+        "
+      >
+        Housekeeping Management
+      </h1>
 
-        <thead>
-          <tr>
-            <th>Room</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Update Status</th>
-          </tr>
-        </thead>
+      <div
+        className="
+        bg-[#FDF6EC]
+        rounded-2xl
+        shadow-lg
+        overflow-hidden
+        border
+        border-[#C4A484]
+        "
+      >
 
-        <tbody>
+        <table className="w-full">
 
-          {/* Loop through all rooms */}
-          {rooms.map((room) => (
+          <thead className="bg-[#7B3F00] text-white">
 
-            <tr key={room.id}>
+            <tr>
+              <th className="p-4 text-left">
+                Room
+              </th>
 
-              <td>{room.number}</td>
+              <th className="p-4 text-left">
+                Type
+              </th>
 
-              <td>{room.type}</td>
+              <th className="p-4 text-left">
+                Status
+              </th>
 
-              <td>{room.status}</td>
-
-              <td>
-
-                {/* Dropdown for updating room status */}
-                <select
-                  value={room.status}
-
-                  onChange={(e) =>
-                    updateStatus(
-                      room.id,
-                      e.target.value
-                    )
-                  }
-                >
-                  <option>Clean</option>
-                  <option>Dirty</option>
-                  <option>Occupied</option>
-                  <option>Maintenance</option>
-                </select>
-
-              </td>
+              <th className="p-4 text-left">
+                Update Status
+              </th>
             </tr>
 
-          ))}
-        </tbody>
-      </table>
+          </thead>
 
-      {/* Display housekeeping logs */}
+          <tbody>
+
+            {rooms.map((room) => (
+
+              <tr
+                key={room.id}
+                className="
+                border-b
+                border-[#D7B899]
+                hover:bg-[#F5E6D3]
+                transition
+                "
+              >
+
+                <td className="p-4 text-[#5C4033]">
+                  {room.number}
+                </td>
+
+                <td className="p-4 text-[#5C4033]">
+                  {room.type}
+                </td>
+
+                <td className="p-4">
+
+                  <span
+                    className={`
+                    px-4
+                    py-2
+                    rounded-full
+                    text-white
+                    text-sm
+                    font-semibold
+
+                    ${
+                      room.status === "Clean"
+                        ? "bg-green-600"
+                        : room.status === "Dirty"
+                        ? "bg-red-600"
+                        : room.status === "Occupied"
+                        ? "bg-[#8B0000]"
+                        : "bg-orange-500"
+                    }
+                    `}
+                  >
+                    {room.status}
+                  </span>
+
+                </td>
+
+                <td className="p-4">
+
+                  <select
+                    className="
+                    border
+                    border-[#C4A484]
+                    rounded-lg
+                    px-3
+                    py-2
+                    bg-[#FFF8F0]
+                    text-[#5C4033]
+                    "
+                    value={room.status}
+                    onChange={(e) =>
+                      updateStatus(
+                        room.id,
+                        e.target.value
+                      )
+                    }
+                  >
+                    <option>Clean</option>
+                    <option>Dirty</option>
+                    <option>Occupied</option>
+                    <option>Maintenance</option>
+                  </select>
+
+                </td>
+
+              </tr>
+
+            ))}
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      {/* Logs */}
       <HouseKeepingLog logs={logs} />
 
     </div>
