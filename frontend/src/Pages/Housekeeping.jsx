@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-import roomsData from "../data/rooms";
-
 import HouseKeepingLog from "../components/HouseKeepingLog";
 
-function Housekeeping() {
-
-  const [rooms, setRooms] = useState(roomsData);
+function Housekeeping({
+  rooms,
+  setRooms,
+}) {
 
   const [logs, setLogs] = useState([]);
 
+  // Update room status
   const updateStatus = (id, newStatus) => {
 
     const updatedRooms = rooms.map((room) =>
@@ -103,8 +103,31 @@ function Housekeeping() {
                   {room.type}
                 </td>
 
-                <td className="p-4 text-[#5C4033]">
-                  {room.status}
+                <td className="p-4">
+
+                  <span
+                    className={`
+                    px-4
+                    py-2
+                    rounded-full
+                    text-white
+                    text-sm
+                    font-semibold
+
+                    ${
+                      room.status === "Clean"
+                        ? "bg-green-600"
+                        : room.status === "Dirty"
+                        ? "bg-red-600"
+                        : room.status === "Occupied"
+                        ? "bg-[#8B0000]"
+                        : "bg-orange-500"
+                    }
+                    `}
+                  >
+                    {room.status}
+                  </span>
+
                 </td>
 
                 <td className="p-4">
@@ -145,6 +168,7 @@ function Housekeeping() {
 
       </div>
 
+      {/* Logs */}
       <HouseKeepingLog logs={logs} />
 
     </div>
