@@ -1,107 +1,76 @@
-import React, { useState } from "react";
-import StaffTable from "../components/StaffTable";
+// src/Pages/StaffManagement.jsx
+import { useState } from "react"
+import StaffTable from "../components/StaffTable"
+
 function StaffManagement() {
-
-  // Staff state
   const [staff, setStaff] = useState([
+    { id: 1, name: "Morgan", role: "Manager" },
+    { id: 2, name: "Nayana", role: "Housekeeper" },
+  ])
+  const [name, setName] = useState("")
+  const [role, setRole] = useState("")
 
-    {
-      id: 1,
-      name: "John",
-      role: "Manager",
-    },
-
-    {
-      id: 2,
-      name: "Mary",
-      role: "Housekeeper",
-    },
-  ]);
-
-  // Form input states
-  const [name, setName] = useState("");
-  const [role, setRole] = useState("");
-
-  // CREATE operation
   const addStaff = () => {
+    if (!name || !role) return
+    setStaff([...staff, { id: Date.now(), name, role }])
+    setName("")
+    setRole("")
+  }
 
-    // Prevent empty input
-    if (!name || !role) return;
-
-    // Create new staff object
-    const newStaff = {
-      id: Date.now(),
-      name,
-      role,
-    };
-
-    // Add new staff to array
-    setStaff([...staff, newStaff]);
-
-    // Clear form inputs
-    setName("");
-    setRole("");
-  };
-
-  // DELETE operation
   const deleteStaff = (id) => {
-
-    // Remove selected staff member
-    setStaff(
-      staff.filter(
-        (member) => member.id !== id
-      )
-    );
-  };
+    setStaff(staff.filter(member => member.id !== id))
+  }
 
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
 
-      {/* Page heading */}
-      <h1>Staff Management</h1>
-
-      {/* Input section */}
-      <div>
-
-        {/* Staff name input */}
-        <input
-          type="text"
-          placeholder="Staff Name"
-
-          value={name}
-
-          onChange={(e) =>
-            setName(e.target.value)
-          }
-        />
-
-        {/* Staff role input */}
-        <input
-          type="text"
-          placeholder="Role"
-
-          value={role}
-
-          onChange={(e) =>
-            setRole(e.target.value)
-          }
-        />
-
-        {/* Add button */}
-        <button onClick={addStaff}>
-          Add Staff
-        </button>
-
+      {/* Header */}
+      <div className="bg-amber-900 text-white py-12 px-4 text-center">
+        <h1 className="text-4xl font-bold mb-2">Staff Management</h1>
+        <p className="text-amber-200">Add, view and remove hotel staff members</p>
       </div>
 
-      {/* Staff table */}
-      <StaffTable
-        staff={staff}
-        deleteStaff={deleteStaff}
-      />  
+      <div className="max-w-4xl mx-auto px-4 py-10">
 
+        {/* Add Staff Form */}
+        <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Add New Staff</h2>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <input
+              type="text"
+              placeholder="Staff Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+            />
+            <input
+              type="text"
+              placeholder="Role"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="flex-1 border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500"
+            />
+            <button
+              onClick={addStaff}
+              className="bg-amber-900 hover:bg-amber-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors"
+            >
+              Add Staff
+            </button>
+          </div>
+        </div>
+
+        {/* Staff Table */}
+        <div className="bg-white rounded-2xl shadow-md overflow-hidden">
+          <div className="px-6 py-4 border-b border-gray-100">
+            <h2 className="text-xl font-bold text-gray-800">Staff Members</h2>
+            <p className="text-gray-400 text-sm mt-1">{staff.length} staff members</p>
+          </div>
+          <StaffTable staff={staff} deleteStaff={deleteStaff} />
+        </div>
+
+      </div>
     </div>
-  );
+  )
 }
 
-export default StaffManagement;
+export default StaffManagement
