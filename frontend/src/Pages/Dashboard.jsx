@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import rooms from "../data/rooms";
 
-import RoomStatuscard from "../components/RoomStatuscard.jsx";
+import RoomStatusCard from "../components/RoomStatusCard";
 
 import RecentActivity from "../components/RecentActivity";
 
-function Dashboard({ rooms }) {
+function Dashboard() {
 
   // Dashboard statistics
   const totalRooms = rooms.length;
 
   const availableRooms = rooms.filter(
-    (room) => room.status === "Clean"
+    (room) => room.status === "available"
   ).length;
 
   const occupiedRooms = rooms.filter(
@@ -95,22 +96,22 @@ function Dashboard({ rooms }) {
         "
       >
 
-        <RoomStatuscard
+        <RoomStatusCard
           title="Total Rooms"
           value={totalRooms}
         />
 
-        <RoomStatuscard
+        <RoomStatusCard
           title="Available Rooms"
           value={availableRooms}
         />
 
-        <RoomStatuscard
+        <RoomStatusCard
           title="Occupied Rooms"
           value={occupiedRooms}
         />
 
-        <RoomStatuscard
+        <RoomStatusCard
           title="Needs Cleaning"
           value={dirtyRooms}
         />

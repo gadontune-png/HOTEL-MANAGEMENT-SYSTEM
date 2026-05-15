@@ -19,12 +19,18 @@ function Booking() {
   const [notification, setNotification] = useState(null)
   const [availability, setAvailability] = useState({})
 
-  useEffect(() => {
-    const data = getBookings()
-    setBookings(data)
-    setAvailability(getAvailableCounts())
-  }, [])
+  
+      useEffect(() => {
+  const loadData = async () => {
+    const bookingsData = await getBookings()
+    const availabilityData = await getAvailableCounts()
 
+    setBookings(bookingsData)
+    setAvailability(availabilityData)
+  }
+
+  loadData()
+}, [])
   const filteredBookings = useMemo(() => {
     return bookings.filter((booking) => {
       const matchesRoom = roomFilter === 'All room types' || booking.roomType === roomFilter
@@ -38,11 +44,11 @@ function Booking() {
     })
   }, [bookings, roomFilter, searchQuery, statusFilter])
 
-  const handleAddBooking = (formData) => {
-    const newBooking = addBooking(formData)
+  const handleAddBooking = async (formData) => {
+    const newBooking = await addBooking(formData)
     const updated = [newBooking, ...bookings]
     setBookings(updated)
-    setAvailability(getAvailableCounts())
+    setAvailability(await getAvailableCounts())
     setNotification({
       title: 'Booking confirmed',
       message: `Reservation confirmed for ${newBooking.guestName} in ${newBooking.roomType}. Room ${newBooking.roomNumber} has been assigned.`,
@@ -50,13 +56,13 @@ function Booking() {
     })
   }
 
-  const handleCancel = (bookingId) => {
-    cancelBooking(bookingId)
+  const handleCancel = async (bookingId) => {
+    await cancelBooking(bookingId)
     const updated = bookings.map((item) =>
       item.id === bookingId ? { ...item, status: 'Cancelled' } : item,
     )
     setBookings(updated)
-    setAvailability(getAvailableCounts())
+    setAvailability( await getAvailableCounts())
     setNotification({
       title: 'Booking cancelled',
       message: 'The reservation has been marked as cancelled and the room will be made available again.',

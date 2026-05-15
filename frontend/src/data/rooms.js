@@ -1,35 +1,108 @@
-// This file stores room data for the hotel system.
-// We export the data so other pages can use it.
-
 const rooms = [
   {
     id: 1,
-    number: 101,
+    name: "Standard Room",
     type: "Standard",
-    status: "Clean",
+    price: 80,
+    capacity: 2,
+    size: "20 m²",
+    floor: 1,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600",
+    amenities: ["Free WiFi", "TV", "Air Conditioning", "Private Bathroom"],
+    description: "A cozy and comfortable room perfect for solo travelers or couples on a budget."
   },
-
   {
     id: 2,
-    number: 102,
+    name: "Deluxe Room",
     type: "Deluxe",
-    status: "Dirty",
+    price: 150,
+    capacity: 2,
+    size: "35 m²",
+    floor: 2,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600",
+    amenities: ["Free WiFi", "Smart TV", "Mini Bar", "Air Conditioning", "Room Service"],
+    description: "Elegant and spacious room with premium furnishings and stunning city views."
   },
-
   {
     id: 3,
-    number: 201,
-    type: "Family Suite",
-    status: "Occupied",
+    name: "Family Suite",
+    type: "Family",
+    price: 220,
+    capacity: 4,
+    size: "55 m²",
+    floor: 3,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600",
+    amenities: ["Free WiFi", "Smart TV", "Kitchen", "2 Bathrooms", "Living Area", "Room Service"],
+    description: "Spacious suite designed for families with separate sleeping areas and a living room."
   },
-
   {
     id: 4,
-    number: 301,
-    type: "Business Suite",
-    status: "Maintenance",
+    name: "Business Suite",
+    type: "Business",
+    price: 300,
+    capacity: 2,
+    size: "60 m²",
+    floor: 4,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600",
+    amenities: ["Free WiFi", "Work Desk", "Meeting Area", "Mini Bar", "Espresso Machine", "Butler Service"],
+    description: "Sophisticated suite tailored for business travelers with a private workspace and premium amenities."
   },
-];
+  {
+    id: 5,
+    name: "Standard Room",
+    type: "Standard",
+    price: 80,
+    capacity: 2,
+    size: "20 m²",
+    floor: 1,
+    status: "booked",
+    image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600",
+    amenities: ["Free WiFi", "TV", "Air Conditioning", "Private Bathroom"],
+    description: "A cozy and comfortable room perfect for solo travelers or couples on a budget."
+  },
+  {
+    id: 6,
+    name: "Deluxe Room",
+    type: "Deluxe",
+    price: 150,
+    capacity: 2,
+    size: "35 m²",
+    floor: 2,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1611892440504-42a792e24d32?w=600",
+    amenities: ["Free WiFi", "Smart TV", "Mini Bar", "Air Conditioning", "Room Service"],
+    description: "Elegant and spacious room with premium furnishings and stunning city views."
+  },
+  {
+    id: 7,
+    name: "Family Suite",
+    type: "Family",
+    price: 220,
+    capacity: 4,
+    size: "55 m²",
+    floor: 3,
+    status: "maintenance",
+    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600",
+    amenities: ["Free WiFi", "Smart TV", "Kitchen", "2 Bathrooms", "Living Area", "Room Service"],
+    description: "Spacious suite designed for families with separate sleeping areas and a living room."
+  },
+  {
+    id: 8,
+    name: "Business Suite",
+    type: "Business",
+    price: 300,
+    capacity: 2,
+    size: "60 m²",
+    floor: 4,
+    status: "available",
+    image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600",
+    amenities: ["Free WiFi", "Work Desk", "Meeting Area", "Mini Bar", "Espresso Machine", "Butler Service"],
+    description: "Sophisticated suite tailored for business travelers with a private workspace and premium amenities."
+  },
+]
 
-// Exporting room data so it can be used in other files
-export default rooms;
+export default rooms
