@@ -6,6 +6,7 @@ const navLinks = [
   { name: 'Home', path: '/' },
   { name: 'Rooms', path: '/rooms' },
   { name: 'Bookings', path: '/booking' },
+  { name: 'Payment', path: '/payment' },
   { name: 'Check In', path: '/checkin' },
   { name: 'Check Out', path: '/checkout' },
   { name: 'Dashboard', path: '/dashboard' },
