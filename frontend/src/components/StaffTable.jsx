@@ -3,44 +3,91 @@ import React from "react";
 function StaffTable({ staff, deleteStaff }) {
 
   return (
-    <table border="1" cellPadding="10">
 
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Role</th>
-          <th>Action</th>
-        </tr>
-      </thead>
+    <div
+      className="
+      bg-[#FDF6EC]
+      rounded-2xl
+      shadow-lg
+      overflow-hidden
+      mt-8
+      border
+      border-[#C4A484]
+      "
+    >
 
-      <tbody>
+      <table className="w-full">
 
-        {staff.map((member) => (
+        <thead className="bg-[#5C2E2E] text-white">
 
-          <tr key={member.id}>
+          <tr>
+            <th className="p-4 text-left">
+              Name
+            </th>
 
-            <td>{member.name}</td>
+            <th className="p-4 text-left">
+              Role
+            </th>
 
-            <td>{member.role}</td>
-
-            <td>
-
-              <button
-                onClick={() =>
-                  deleteStaff(member.id)
-                }
-              >
-                Delete
-              </button>
-
-            </td>
-
+            <th className="p-4 text-left">
+              Action
+            </th>
           </tr>
 
-        ))}
+        </thead>
 
-      </tbody>
-    </table>
+        <tbody>
+
+          {staff.map((member) => (
+
+            <tr
+              key={member.id}
+              className="
+              border-b
+              border-[#D7B899]
+              hover:bg-[#F5E6D3]
+              transition
+              "
+            >
+
+              <td className="p-4 text-[#5C4033]">
+                {member.name}
+              </td>
+
+              <td className="p-4 text-[#5C4033]">
+                {member.role}
+              </td>
+
+              <td className="p-4">
+
+                <button
+                  className="
+                  bg-[#8B0000]
+                  text-white
+                  px-4
+                  py-2
+                  rounded-lg
+                  hover:bg-[#6E0000]
+                  transition
+                  "
+                  onClick={() =>
+                    deleteStaff(member.id)
+                  }
+                >
+                  Delete
+                </button>
+
+              </td>
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+
+    </div>
   );
 }
 
