@@ -2,6 +2,8 @@ import { useState } from "react";
 import { processPayment } from "../services/paymentService";
 
 export default function PaymentForm() {
+
+    
   const [room, setRoom] = useState('');
   const [checkIn, setCheckIn] = useState('');
   const [checkOut, setCheckOut] = useState('');

@@ -20,10 +20,10 @@ function App() {
     <Router>
       <Routes>
 
-        {/* Login page - no Navbar or Footer */}
+        
         <Route path="/login" element={<Login/>} />
 
-        {/* All other pages - with Navbar and Footer */}
+      
         <Route path="/*" element={
           <div className="flex flex-col min-h-screen bg-gray-50">
             <Navbar />
