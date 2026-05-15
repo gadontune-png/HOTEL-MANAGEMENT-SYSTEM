@@ -69,8 +69,8 @@ export default function PaymentForm() {
   };
 
   return (
-    <div className="flex justify-center items-center py-12 px-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border-t-4 border-red-600">
+    
+     <div className="flex justify-center items-center py-12 px-4 min-h-screen bg-gradient-to-br from-amber-50 to-orange-100"> <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8 border-t-4 border-red-600">
         <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
           Process Payment
         </h2>
